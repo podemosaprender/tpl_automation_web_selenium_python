@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+#INFO: subir datos a una rama en $GIT
+
+timestamp=$(date -Iseconds)
+id="scraper_${timestamp}"
+GIT="git"
+
+$GIT config user.name "Automatico"
+$GIT config user.email "x@podemosaprender.org"
+$GIT add resultados $*
+$GIT commit -m "Scraper: ${timestamp}" || exit 0
+$GIT push

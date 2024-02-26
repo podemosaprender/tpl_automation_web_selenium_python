@@ -1,0 +1,22 @@
+name: Navegar con WebDriver
+on:
+  workflow_dispatch:
+jobs:
+  navegar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extraer este repo
+        uses: actions/checkout@v2
+      - name: Preparar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+      - name: Configurar ambiente
+        run: herramientas/instalar
+      - name: Ejecutar nuestro ejemplo (debe guardar screenshot)
+        run: python -mejemplos.screenshot
+      - name: Ejecutar tests (genera reporte)
+        run: herramientas/tests_run
+        continue-on-error: true #A: aunque fallen tests seguimos workflow
+      - name: Commit lo que haya cambiado
+        run: herramientas/git_datos_subir #U: se pueden pasar como parametro otras carpetas ademas de resultados

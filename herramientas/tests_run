@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+#INFO: ejecutar los tests
+
+python -mpytest --html=resultados/1test_results.html --self-contained-html

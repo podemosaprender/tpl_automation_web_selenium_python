@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+#INFO: instalar en ubuntu
+
+echo "PASO 1/6: Lista de paquetes instalados"
+apt list --installed
+
+echo "PASO 2/6: Desinstalar chrome y chromium para usar el de selenium"
+sudo apt purge google-chrome-stable
+sudo apt purge chromium-browser
+
+echo "PASO 3/6: Instalar xvfb (chrome lo instala chromedriver-autoinstaller despues)"
+sudo apt install -y xvfb
+
+echo "PASO 4/6: Instalar requirements.txt (si habia)"
+pip install -r requirements.txt
+
+echo "PASO 5/6: Instalar paquetes para test"
+pip install pytest pytest-html 
+pip install chromedriver-autoinstaller pyvirtualdisplay
+pip install requests beautifulsoup4 pandas selenium
+echo "LISTO!"
