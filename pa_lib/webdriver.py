@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
 import chromedriver_autoinstaller
+ 
 from pyvirtualdisplay import Display
 
 import os
@@ -23,23 +24,23 @@ def get_browser(quiereVisible= False, quiereVirtualDisplay= None):
 
 		chrome_options = webdriver.ChromeOptions()
 		options = [
-				"--disable-gpu",
-				"--window-size=1920,1200",
-				"--remote-debugging-port=9222",
-				"--ignore-certificate-errors",
-				"--disable-extensions",
-				"--no-sandbox",
-				"--disable-dev-shm-usage",
-				"user-data-dir="+PROFILE_DIR, #A: Path to your chrome profile
+           	"--disable-gpu",
+           	"--window-size=1920,1200",
+           	"--ignore-certificate-errors",
+           	"--disable-extensions",
+           	"--no-sandbox",
+           	"--disable-dev-shm-usage",
+            #XXX	"user-data-dir="+PROFILE_DIR, #A: Path to your chrome profile
 		]
 
 		if not quiereVisible and os.environ.get('P_VISIBLE',None) is None:
 			options.append("--headless")
 
 		for option in options:
-				chrome_options.add_argument(option)
+			chrome_options.add_argument(option)
 
-		browser= webdriver.Chrome(options=chrome_options)
+		print(chrome_options)
+		browser = webdriver.Chrome(options=chrome_options)
 
 	return browser
 
