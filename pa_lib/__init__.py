@@ -4,8 +4,8 @@ import unittest
 import json
 import pickle
 import os
-from pa_lib.webdriver import get_browser, free_browser
-
+from .webdriver import get_browser, free_browser
+from .shortcuts import *
 
 #U: lo que necesita estar cargado en la pagina para que funcione el resto
 JS_INIT_LIBS= """

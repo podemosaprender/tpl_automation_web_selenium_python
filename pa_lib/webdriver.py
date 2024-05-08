@@ -13,6 +13,7 @@ browser= None
 def get_browser(quiereVisible= False, quiereVirtualDisplay= None):
 	global browser
 	if browser is None:
+		quiereVisible= os.environ.get('BROWSER_FORCE_VISIBLE', quiereVisible) != False
 		quiereVirtualDisplay= os.environ.get('DISPLAY',None) is None if quiereVirtualDisplay is None else quiereVirtualDisplay
 		if quiereVirtualDisplay:
 			display = Display(visible=0, size=(800, 800)) 
@@ -24,6 +25,7 @@ def get_browser(quiereVisible= False, quiereVirtualDisplay= None):
 		options = [
 				"--disable-gpu",
 				"--window-size=1920,1200",
+				"--remote-debugging-port=9222",
 				"--ignore-certificate-errors",
 				"--disable-extensions",
 				"--no-sandbox",
